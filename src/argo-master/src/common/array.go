@@ -4,15 +4,15 @@ import (
 	"fmt"
 )
 
-func Arr()  {
-	a := [2] int{1, 2}   // 数组， 一开始就分配好了内存，大小限定，不能拓展
-	b := []int{1, 2, 3, 4, 5, 6, 7}  // 切片，大小没有限定，可以动态拓展
+func Arr() {
+	a := [2]int{1, 2}               // 数组， 一开始就分配好了内存，大小限定，不能拓展
+	b := []int{1, 2, 3, 4, 5, 6, 7} // 切片，大小没有限定，可以动态拓展
 
-	for _, i := range a{
+	for _, i := range a {
 		fmt.Printf("a 数组遍历 %d\n", i)
 	}
 
-	for _, j := range b{
+	for _, j := range b {
 		fmt.Printf("b 切片遍历 %d\n", j)
 	}
 
@@ -34,7 +34,7 @@ func Insert(p int, value int, s []int) []int {
 func Reverse(s []int) {
 	// 反转一个切片
 	// 此处利用go语言多重赋值的特性
-	for i, j:=0, len(s)-1; i<j; i, j = i+1, j-1 {
+	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
 		s[i], s[j] = s[j], s[i]
 	}
 }

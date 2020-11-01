@@ -12,5 +12,4 @@ func TestLinkNode_NewJosphuseRing(t *testing.T) {
 		itertor = itertor.Next
 	}
 
-
 }

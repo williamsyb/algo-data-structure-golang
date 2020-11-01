@@ -1,9 +1,9 @@
 package kademlia
 
 import (
-	"net/rpc"
-	"net"
 	"fmt"
+	"net"
+	"net/rpc"
 )
 
 type Kademlia struct {
@@ -62,7 +62,7 @@ func (k *Kademlia) Serve() error {
 	go rpc.ServeConn(conn)
 
 	go fmt.Println(k.routers)
-	select{}
+	select {}
 	return nil
 }
 

@@ -1,8 +1,8 @@
 package hashtable
 
 import (
-	"testing"
 	"fmt"
+	"testing"
 )
 
 func populateHashTable(count int, start int) *HashTable {

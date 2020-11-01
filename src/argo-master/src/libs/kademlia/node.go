@@ -2,7 +2,7 @@ package kademlia
 
 import "fmt"
 
-func RunServer()  {
+func RunServer() {
 	nodeOneId := NewNodeID("FFFFFFFF")
 	currentNode := Contract{nodeOneId, "localhost:9999"}
 	k := NewKademlia(&currentNode, "NodeOne")
@@ -10,8 +10,7 @@ func RunServer()  {
 	k.Serve()
 }
 
-
-func Client()  {
+func Client() {
 	nodeOneId := NewNodeID("FFFFFFFF")
 	currentNode := Contract{nodeOneId, "localhost:9999"}
 
@@ -25,7 +24,7 @@ func Client()  {
 		&PingResponce{},
 	)
 
-	if err != nil{
+	if err != nil {
 		fmt.Println(err)
 	}
 }

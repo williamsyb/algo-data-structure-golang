@@ -1,13 +1,13 @@
 package graph
 
 import (
-"testing"
-"fmt"
+	"fmt"
+	"testing"
 )
 
 var g ItemGraph
 
-func fillGraph()  {
+func fillGraph() {
 	nA := Node{"A"}
 	nB := Node{"B"}
 	nC := Node{"C"}
@@ -30,7 +30,7 @@ func fillGraph()  {
 	g.AddEdge(&nD, &nA)
 }
 
-func TestAdd(t *testing.T)  {
+func TestAdd(t *testing.T) {
 	fillGraph()
 	//g.String()
 }
@@ -46,5 +46,3 @@ func TestItemGraph_Dfs(t *testing.T) {
 		fmt.Printf("DFS visiting... %v\n", node)
 	})
 }
-
-

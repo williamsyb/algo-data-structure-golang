@@ -12,7 +12,6 @@ import (
 // 广度优先遍历： 从图的某一节点出发，首先依次访问该节点的所有相邻顶点，再按照这些顶点被访问的先后次序，依次访问与它们相邻的所有未被访问的顶点。
 // 重复此过程，直到所有的顶点均被访问
 
-
 // 深度优先遍历
 // 从图的某个顶点出发访问遍图中所有顶点，且每个顶点仅被访问依次
 // DFS
@@ -21,7 +20,6 @@ import (
 // 3. 若此时图中尚有顶点未被访问， 则选择其中一个顶点作为起始顶点并访问
 
 type Item interface {
-
 }
 
 // 组成图的顶点
@@ -35,34 +33,34 @@ type ItemGraph struct {
 	Edges map[Node][]*Node
 }
 
-func (n *Node) String() string  {
+func (n *Node) String() string {
 	return fmt.Sprintf("%v", n.Value)
 }
 
 // 添加节点
-func (g *ItemGraph) AddNode(n *Node)  {
+func (g *ItemGraph) AddNode(n *Node) {
 	g.Nodes = append(g.Nodes, n)
 }
 
 // 添加边
-func (g *ItemGraph) AddEdge(n1, n2 *Node)  {
-	if g.Edges == nil{
+func (g *ItemGraph) AddEdge(n1, n2 *Node) {
+	if g.Edges == nil {
 		g.Edges = make(map[Node][]*Node)
 	}
 
 	// 无向图
-	g.Edges[*n1] = append(g.Edges[*n1], n2)    // 设定从节点n1到n2的边
-	g.Edges[*n2] = append(g.Edges[*n2], n1)    // 设定从节点n2到n1的边
+	g.Edges[*n1] = append(g.Edges[*n1], n2) // 设定从节点n1到n2的边
+	g.Edges[*n2] = append(g.Edges[*n2], n1) // 设定从节点n2到n1的边
 }
 
-func (g *ItemGraph) String()  {
+func (g *ItemGraph) String() {
 	s := ""
 
-	for i := 0; i< len(g.Nodes); i++{
+	for i := 0; i < len(g.Nodes); i++ {
 		s += g.Nodes[i].String() + "->"
 		near := g.Edges[*g.Nodes[i]]
 
-		for j :=0; j<len(near); j++{
+		for j := 0; j < len(near); j++ {
 			s += near[j].String() + " "
 		}
 		s += "\n"
@@ -71,7 +69,6 @@ func (g *ItemGraph) String()  {
 	fmt.Println(s)
 }
 
-
 // 图的遍历，深度优先与广度优先遍历
 // 首先bfs 广度优先搜索
 // 此处结合队列实现图的广度优先遍历
@@ -79,12 +76,12 @@ type NodeQueue struct {
 	Items []Node
 }
 
-func (s *NodeQueue) New() *NodeQueue  {
+func (s *NodeQueue) New() *NodeQueue {
 	s.Items = []Node{}
 	return s
 }
 
-func (s *NodeQueue) Enqueue(t Node)  {
+func (s *NodeQueue) Enqueue(t Node) {
 	s.Items = append(s.Items, t)
 }
 
@@ -94,11 +91,11 @@ func (s *NodeQueue) Dequeue() *Node {
 	return &item
 }
 
-func (s *NodeQueue) IsEmpty() bool  {
+func (s *NodeQueue) IsEmpty() bool {
 	return len(s.Items) == 0
 }
 
-func (g *ItemGraph) Bfs(f func(node *Node))  {
+func (g *ItemGraph) Bfs(f func(node *Node)) {
 	q := NodeQueue{}
 	q.New()
 
@@ -109,30 +106,28 @@ func (g *ItemGraph) Bfs(f func(node *Node))  {
 	visited[n] = true
 
 	for {
-		if q.IsEmpty(){
+		if q.IsEmpty() {
 			break
 		}
 		node := q.Dequeue()
 		near := g.Edges[*node]
 
-		for i :=0; i<len(near); i++{
+		for i := 0; i < len(near); i++ {
 			j := near[i]
-			if !visited[j]{
+			if !visited[j] {
 				q.Enqueue(*j)
 				visited[j] = true
 
 			}
 		}
 
-		if f!=nil{
+		if f != nil {
 			f(node)
 		}
 	}
 }
 
 // 以上即为用栈实现图的广度优先遍历
-
-
 
 // 下面实现图的深度优先遍历
 // ****
@@ -160,7 +155,7 @@ func (n *NodeStack) pop() *Node {
 
 	item := n.Items[len(n.Items)-1]
 
-	n.Items = n.Items[0: len(n.Items)-1]
+	n.Items = n.Items[0 : len(n.Items)-1]
 	return &item
 }
 
@@ -180,30 +175,30 @@ func (g *ItemGraph) Dfs(f func(node *Node)) {
 	n := g.Nodes[0]
 	stack.push(*n)
 
-	visited := make(map[*Node] bool)
+	visited := make(map[*Node]bool)
 
 	visited[n] = true
 
 	for {
-		if stack.IsEmpty(){
+		if stack.IsEmpty() {
 			break
 		}
 
 		node := stack.pop()
-		if !visited[node]{
+		if !visited[node] {
 			visited[node] = true
 		}
 		near := g.Edges[*node]
 
-		for i:= 0; i< len(near); i++{
+		for i := 0; i < len(near); i++ {
 			j := near[i]
-			if !visited[j]{
+			if !visited[j] {
 				visited[j] = true
 				stack.push(*j)
 			}
 		}
 
-		if f != nil{
+		if f != nil {
 			f(node)
 		}
 	}

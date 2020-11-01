@@ -22,7 +22,7 @@ func (s *ItemStack) Push(t Item) {
 // Pop removes an Item from the top of the stack
 func (s *ItemStack) Pop() *Item {
 	item := s.items[len(s.items)-1] // 后进先出
-	s.items = s.items[0:len(s.items)-1]
+	s.items = s.items[0 : len(s.items)-1]
 	return &item
 
 }

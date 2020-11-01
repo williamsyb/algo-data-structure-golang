@@ -11,7 +11,7 @@ type NodeID [IdLength]byte
 
 func NewNodeID(data string) (ret NodeID) {
 
-	for k, v := range []byte(data){
+	for k, v := range []byte(data) {
 		ret[k] = byte(v)
 	}
 
@@ -65,5 +65,3 @@ func (node NodeID) PrefixLen() (ret int) {
 	}
 	return IdLength*8 - 1
 }
-
-

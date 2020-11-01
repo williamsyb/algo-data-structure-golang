@@ -30,13 +30,13 @@ func TestKademliaCore_FindNode(t *testing.T) {
 
 	var contacts [100]Contract
 
-	for i:=0; i<len(contacts); i++{
+	for i := 0; i < len(contacts); i++ {
 		contacts[i] = Contract{NewRandomNodeID(), "localhost:9999"}
 		err := kc.Ping(&PingRequest{RPCHeader{&contacts[i], k.NetworkId}},
 			&PingResponce{},
 		)
 
-		if err != nil{
+		if err != nil {
 			t.Error(err)
 		}
 	}
@@ -44,7 +44,7 @@ func TestKademliaCore_FindNode(t *testing.T) {
 	args := FindNodeRequest{RPCHeader{&contacts[0], k.NetworkId}, contacts[0].Id}
 	response := FindNodeResponse{}
 	err := kc.FindNode(&args, &response)
-	if err != nil{
+	if err != nil {
 		t.Error(err)
 	}
 	//

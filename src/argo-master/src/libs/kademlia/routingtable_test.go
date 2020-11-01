@@ -1,8 +1,8 @@
 package kademlia
 
 import (
-	"testing"
 	"fmt"
+	"testing"
 )
 
 func TestNewRoutingTable(t *testing.T) {
@@ -18,7 +18,7 @@ func TestNewRoutingTable(t *testing.T) {
 	n4 := NewNodeID("22222222")
 	res := rt.FindClosest(n4, 2)
 
-	for _, r := range res{
+	for _, r := range res {
 		fmt.Println(r)
 	}
 
